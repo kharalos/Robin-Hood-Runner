@@ -14,24 +14,6 @@ public class SwerveInput : MonoBehaviour
         if(!isDraging)
             swerveLeft = swerveRight = false;
 
-        /*#region Standalone Inputs
-        if (Input.GetMouseButtonDown(0))
-        {
-            lastFrameFingerPositionX = Input.mousePosition.x;
-            isDraging = true;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            moveFactorX = Input.mousePosition.x - lastFrameFingerPositionX;
-            lastFrameFingerPositionX = Input.mousePosition.x;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            moveFactorX = 0f;
-            isDraging = false;
-        }
-        #endregion*/
-
         #region Mobile Input
         if (Input.touches.Length > 0)
         {
