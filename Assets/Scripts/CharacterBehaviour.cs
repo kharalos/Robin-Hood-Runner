@@ -15,7 +15,7 @@ public class CharacterBehaviour : MonoBehaviour
     {
         //m_animator = GetComponent<Animator>();
     }
-    
+
     void Update()
     {
         if (running)
@@ -32,7 +32,7 @@ public class CharacterBehaviour : MonoBehaviour
             transform.position += Vector3.right * Time.deltaTime * swerveSpeed;
         }
         var pos = transform.position;
-        pos.x = Mathf.Clamp(transform.position.x, -2.0f, 2.0f);
+        pos.x = Mathf.Clamp(transform.position.x, -4.0f, 4.0f);
         transform.position = pos;
 
     }
