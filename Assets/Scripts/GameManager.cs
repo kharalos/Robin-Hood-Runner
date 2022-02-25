@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     private void GameInitializer(){
         money = 0;
     }
+    public void RunStarted(){
+        _uiManager.HideStartHUD();
+    }
     public void CollectedMoney(){
         money++;
         _uiManager.UpdateUI(money);

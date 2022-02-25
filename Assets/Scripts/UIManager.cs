@@ -8,12 +8,23 @@ using DG.Tweening;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] private Image swipeSymbol;
+    [SerializeField] private GameObject startPanel;
+    IEnumerator Start(){
+        yield return new WaitForSeconds(0.5f);
+
+        Sequence s = DOTween.Sequence();
+
+		s.Append(swipeSymbol.rectTransform.DOAnchorPosX(Screen.width/8, 2f,false).SetRelative().SetEase(Ease.InOutQuad));
+		s.SetLoops(-1, LoopType.Yoyo);
+    }
+    public void HideStartHUD(){
+        //s.Kill();
+        startPanel.SetActive(false);
+    }
     public void UpdateUI(float moneyValue){
         moneyText.text = moneyValue.ToString();
         moneyText.rectTransform.DOPunchAnchorPos(Vector2.one * 3f, 1);
     }
-    // IEnumerator RectPuncher(RectTransform _rect){
-    //     _rect.DOPunchAnchorPos(Vector2.up, 0.2f,)
-    //     yield return new WaitForSeconds(0.0f);
-    // }
+
 }

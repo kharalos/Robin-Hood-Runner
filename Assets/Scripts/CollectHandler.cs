@@ -16,6 +16,7 @@ public class CollectHandler : MonoBehaviour
         if(other.CompareTag("Player")){
             FindObjectOfType<AudioSource>().PlayOneShot(clip);
             FindObjectOfType<GameManager>().CollectedMoney();
+            GetComponentInChildren<ParticleSystem>().Play();
             StartCoroutine(Collected());
         }
     }
@@ -23,7 +24,7 @@ public class CollectHandler : MonoBehaviour
         // Create a new Sequence.
 		Sequence s = DOTween.Sequence();
 		// Add an horizontal relative move tween that will last the whole Sequence's duration
-		s.Append(transform.DOScale(1.1f, animDuration).SetRelative());
+		s.Append(transform.DOScale(0.5f, animDuration).SetRelative());
 		// Insert a rotation tween which will last half the duration
 		s.Insert(animDuration, transform.DOScale(0.0f, animDuration / 2));
 

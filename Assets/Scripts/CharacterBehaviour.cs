@@ -7,6 +7,7 @@ public class CharacterBehaviour : MonoBehaviour
 {
     private Animator m_animator;
     private CharacterController m_controller;
+    private GameManager m_gameManager;
     Quaternion targetRot;
     Vector3 swerveDirection, targetSwerveDirection;
     [SerializeField] private float platformWidth = 4f;
@@ -19,6 +20,7 @@ public class CharacterBehaviour : MonoBehaviour
     {
         m_animator = GetComponent<Animator>();
         m_controller = GetComponent<CharacterController>();
+        m_gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -52,6 +54,7 @@ public class CharacterBehaviour : MonoBehaviour
     }
     public void StartRun()
     {
+        m_gameManager.RunStarted();
         running = true;
         m_animator.SetTrigger("run");
     }
