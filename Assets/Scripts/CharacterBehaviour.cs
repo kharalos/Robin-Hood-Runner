@@ -7,7 +7,6 @@ public class CharacterBehaviour : MonoBehaviour
 {
     private Animator m_animator;
     private CharacterController m_controller;
-    float timer;
     Quaternion targetRot;
     Vector3 swerveDirection, targetSwerveDirection;
     [SerializeField] private float platformWidth = 4f;
@@ -18,7 +17,6 @@ public class CharacterBehaviour : MonoBehaviour
 
     void Start()
     {
-        timer = 0.0f;
         m_animator = GetComponent<Animator>();
         m_controller = GetComponent<CharacterController>();
     }
@@ -50,10 +48,6 @@ public class CharacterBehaviour : MonoBehaviour
             m_controller.Move((Vector3.forward * Time.deltaTime * runSpeed) + (swerveDirection * Time.deltaTime * swerveSpeed));
         }
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 4f * Time.deltaTime);
-
-        /*var pos = transform.position;
-        pos.x = Mathf.Clamp(transform.position.x, -4.0f, 4.0f);
-        transform.position = pos;*/
 
     }
     public void StartRun()
