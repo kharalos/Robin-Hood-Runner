@@ -23,8 +23,11 @@ public class CharacterBehaviour : MonoBehaviour
         m_controller = GetComponent<CharacterController>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
+        if(!running && Input.touchCount > 0){
+            StartRun();
+        }
         if (SwerveInput.swerveLeft && transform.position.x > -platformWidth)
         {
             targetSwerveDirection = Vector3.left;
@@ -56,15 +59,15 @@ public class CharacterBehaviour : MonoBehaviour
     public void StartRun()
     {
         running = true;
-        m_animator.SetTrigger("Start");
+        m_animator.SetTrigger("run");
     }
     public void StopRun()
     {
         running = false;
-        m_animator.SetTrigger("Stop");
+        m_animator.SetTrigger("idle");
     }
     public void Dance()
     {
-        m_animator.SetTrigger("Dance");
+        m_animator.SetTrigger("dance");
     }
 }
