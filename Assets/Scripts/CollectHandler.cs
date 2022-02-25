@@ -6,6 +6,7 @@ using DG.Tweening;
 public class CollectHandler : MonoBehaviour
 {
     [SerializeField] private float animDuration = 0.5f;
+    [SerializeField] private AudioClip clip;
     /// <summary>
     /// OnTriggerEnter is called when the Collider other enters the trigger.
     /// </summary>
@@ -13,7 +14,8 @@ public class CollectHandler : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player")){
-            Debug.Log("Collided with money");
+            FindObjectOfType<AudioSource>().PlayOneShot(clip);
+            FindObjectOfType<GameManager>().CollectedMoney();
             StartCoroutine(Collected());
         }
     }
