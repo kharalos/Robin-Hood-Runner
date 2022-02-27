@@ -83,7 +83,7 @@ Material:
     - _Advancedd: 1
     - _BumpScale: 1
     - _CUBEMAPP: 1
-    - _CubemapPosition: 0
+    - _CubemapPosition: -0.01
     - _CubemapTransition: 0.8
     - _Cubemapp: 1
     - _Cutoff: 0.5
@@ -109,8 +109,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Rotation: 0
-    - _RotationSpeed: 2
+    - _Rotation: 328
+    - _RotationSpeed: 0.1
     - _Rotationn: 1
     - _SkyboxExtended: 1
     - _SmoothnessTextureChannel: 0

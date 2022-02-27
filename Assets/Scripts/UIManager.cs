@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateUI(float moneyValue){
         moneyText.text = moneyValue.ToString();
-        moneyText.rectTransform.DOPunchAnchorPos(Vector2.one * 3f, 1);
+        moneyText.rectTransform.DOShakeAnchorPos(0.2f, 10f);
     }
 
 }

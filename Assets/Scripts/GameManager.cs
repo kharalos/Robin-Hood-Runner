@@ -5,12 +5,19 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     UIManager _uiManager;
+    [SerializeField] private LevelBar levelBar;
     private float money;
     public float Money => money;
+    private float xp;
+    public float GetXp(){
+        return xp;
+    }
     // Start is called before the first frame update
     void Start()
     {
-
+        Time.timeScale = 1f;
+        money = 0;
+        xp = 0;
         _uiManager = GetComponentInChildren<UIManager>();
     }
 
@@ -26,7 +33,27 @@ public class GameManager : MonoBehaviour
         _uiManager.HideStartHUD();
     }
     public void CollectedMoney(){
-        money++;
+        money += 10;
+        xp++;
         _uiManager.UpdateUI(money);
+        levelBar.UpdateLevelBar(xp);
+    }
+    public void MoneyChange(float function){
+        if(function < 5)
+            money *= function;
+        else
+            money *= (function/100);
+        money = (int)money;
+        if(money < 0) money = 0;
+        _uiManager.UpdateUI(money);
+        xp += 5;
+        levelBar.UpdateLevelBar(xp);
+    }
+    public void Finish(){
+        FindObjectOfType<CharacterBehaviour>().StopRun();
+    }
+
+    public void GameOver(){
+        
     }
 }

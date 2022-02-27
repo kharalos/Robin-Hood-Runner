@@ -5,6 +5,8 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] private Transform target;
+    private Transform oldTarget;
+    private float oldTime;
     [Range(0,20)] [SerializeField] private float altitude = 15f;
     [Range(0,20)] [SerializeField] private float longitude = 13f;
     [Range(0,10)] [SerializeField] private float lerpTime = 1.4f;
@@ -15,5 +17,17 @@ public class CameraManager : MonoBehaviour
         if(target == null) return;
         transform.position = Vector3.Slerp(transform.position, new Vector3(0.0f,altitude, -longitude) + target.position, lerpTime * Time.deltaTime);
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(angle, 0.0f, 0.0f), lerpTime * Time.deltaTime);
+    }
+
+    public void SetTarget(Transform newTarget){
+        oldTarget = target;
+        oldTime = lerpTime;
+        lerpTime = 10f;
+        target = newTarget;
+    }
+
+    public void Normalize(){
+        target = oldTarget;
+        lerpTime = oldTime;
     }
 }
