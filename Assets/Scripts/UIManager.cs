@@ -7,9 +7,9 @@ using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] private TextMeshProUGUI moneyText, scoreText;
     [SerializeField] private Image swipeSymbol;
-    [SerializeField] private GameObject startPanel;
+    [SerializeField] private GameObject startPanel, endPanel;
     IEnumerator Start(){
         yield return new WaitForSeconds(0.5f);
 
@@ -25,6 +25,11 @@ public class UIManager : MonoBehaviour
     public void UpdateUI(float moneyValue){
         moneyText.text = moneyValue.ToString();
         moneyText.rectTransform.DOShakeAnchorPos(0.2f, 10f);
+    }
+
+    public void EndMenu(float money){
+        endPanel.SetActive(true);
+        scoreText.text = money.ToString();
     }
 
 }

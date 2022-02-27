@@ -6,12 +6,15 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     Rigidbody m_rigidbody;
+    [SerializeField] private AudioClip impact;
+    AudioSource source;
     bool moving = false;
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
     void Awake()
     {
+        source = GetComponent<AudioSource>();
         m_rigidbody = GetComponent<Rigidbody>();
     }
     /// <summary>
@@ -37,20 +40,22 @@ public class Arrow : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         if(other.transform.CompareTag("Range")){
+            if(!moving) return;
             moving = false;
             m_rigidbody.velocity = Vector3.zero;
             m_rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             m_rigidbody.rotation = Quaternion.Euler(45f, 0.0f, 0.0f);
-            StartCoroutine(DelayToCamera());
+            source.PlayOneShot(impact);
+            StartCoroutine(DelayToCamera(other.transform.GetComponent<RangeSegment>().multiplier));
         }
     }
 
-    IEnumerator DelayToCamera(){
+    IEnumerator DelayToCamera(int multiplier){
         yield return new WaitForSeconds(0.3f);
         Time.timeScale = 1f;
         yield return new WaitForSeconds(2f);
         FindObjectOfType<CameraManager>().Normalize();
         yield return new WaitForSeconds(1.5f);
-        FindObjectOfType<GameManager>().GameOver();
+        FindObjectOfType<GameManager>().GameOver(multiplier);
     }
 }

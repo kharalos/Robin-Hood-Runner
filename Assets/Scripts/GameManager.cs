@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<CharacterBehaviour>().StopRun();
     }
 
-    public void GameOver(){
-        
+    public void GameOver(int multiplier){
+        _uiManager.EndMenu(money * multiplier);
     }
 }
